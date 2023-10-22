@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -36,6 +37,9 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.businesscalendar.R
+import com.example.businesscalendar.core.presentation.navigation.AppScreens
+import com.example.businesscalendar.core.presentation.ui.theme.Blue30
+import com.example.businesscalendar.core.presentation.ui.theme.Blue40
 
 @Composable
 fun  SplashScreen (
@@ -44,7 +48,7 @@ fun  SplashScreen (
 
     ConstraintLayout(
         modifier = Modifier
-            .background(color = Color(0xFF2C6078))
+            .background(color = Color(0xFFFFFFFF))
             .fillMaxWidth()
             .fillMaxHeight()
     ) {
@@ -55,10 +59,9 @@ fun  SplashScreen (
             modifier = Modifier
                 .verticalScroll(rememberScrollState()),
         ) {
-
             BuildLogoImage()
             BuildAppName()
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = { navController.navigate(AppScreens.CalendarHomeScreen.route) }) {
                 Text(text = "Start")
             }
         }
@@ -67,20 +70,18 @@ fun  SplashScreen (
 
 @Composable
 private fun BuildLogoImage() {
-//    Row(Modifier.padding(bottom = 32.dp, top = 72.dp)) {
-////        Image(painter = , contentDescription = )
-//    }
-
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.app_icon))
     val progress by animateLottieCompositionAsState(
         composition, iterations = LottieConstants.IterateForever
     )
 
-    LottieAnimation(
-        composition,
-        progress,
-        modifier = Modifier.size(400.dp)
-    )
+    Row(Modifier.padding(bottom = 32.dp, top = 72.dp)) {
+        LottieAnimation(
+            composition,
+            progress,
+            modifier = Modifier.size(400.dp)
+        )
+    }
 }
 
 @Composable
@@ -88,7 +89,9 @@ private fun BuildAppName() {
     Text(text = "Business Calendar",
             style = TextStyle(
             fontSize = 24.sp,
-                color = Color.White
+                color = Blue30,
+                fontWeight = FontWeight.Bold
+
         )
     )
 }
