@@ -21,8 +21,7 @@ fun  CalendarHomeScreen (
         bottomBar = { BottomNavigationBar(navController = navController) },
     ) { innerPadding ->
         Column(
-            modifier = Modifier
-                .padding(innerPadding),
+            modifier = Modifier.padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(

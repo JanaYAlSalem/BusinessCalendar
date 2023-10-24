@@ -24,7 +24,7 @@ import com.example.businesscalendar.core.presentation.ui.theme.Gray10
 
 @Composable
 fun CustomTextField(
-    textValue : String,
+    textValue: String,
     onValueChange: (String) -> Unit,
     label: String,
     Icon: @Composable (() -> Unit)? = null,
@@ -39,7 +39,7 @@ fun CustomTextField(
         ),
         leadingIcon = Icon,
         value = textValue,
-        onValueChange = onValueChange ,
+        onValueChange = onValueChange,
         label = { Text(text = label) },
         modifier = Modifier
             .fillMaxWidth()
@@ -52,11 +52,17 @@ fun CustomTextField(
 fun DefaultPreview() {
     var textState by remember { mutableStateOf("") }
 
-Column() {
-    CustomTextField(label = "Email", Icon = { Icon(imageVector = Icons.Outlined.Email, contentDescription = null) }
-        , textValue = textState, onValueChange = {textState = it} )
+    Column() {
+        CustomTextField(
+            label = "Email",
+            Icon = { Icon(imageVector = Icons.Outlined.Email, contentDescription = null) },
+            textValue = textState,
+            onValueChange = { textState = it })
 
-    CustomTextField(label = "Password", Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) }
-        , textValue = textState, onValueChange = {textState = it} )
-}
+        CustomTextField(
+            label = "Password",
+            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
+            textValue = textState,
+            onValueChange = { textState = it })
+    }
 }

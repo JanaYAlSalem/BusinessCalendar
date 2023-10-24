@@ -12,7 +12,7 @@ sealed class NavigationItem(var screen: AppScreens, var icon: Int, var title: St
 
     // 2- Add Screen
     object AddItem : NavigationItem(
-        screen = AppScreens.SplashScreen,
+        screen = AppScreens.AddReminderScreen,
         icon = R.drawable.ic_add,
         title = "Add Item"
     )
