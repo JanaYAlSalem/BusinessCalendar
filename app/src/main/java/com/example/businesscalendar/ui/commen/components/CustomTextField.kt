@@ -1,4 +1,4 @@
-package com.example.businesscalendar.core.presentation.ui.app_components
+package com.example.businesscalendar.ui.commen.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,11 +16,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.businesscalendar.core.presentation.ui.theme.Blue40
-import com.example.businesscalendar.core.presentation.ui.theme.Gray10
+import com.example.businesscalendar.ui.theme.Blue40
+import com.example.businesscalendar.ui.theme.Gray10
 
 @Composable
 fun CustomTextField(

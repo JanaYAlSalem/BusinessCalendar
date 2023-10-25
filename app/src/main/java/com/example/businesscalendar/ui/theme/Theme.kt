@@ -1,4 +1,4 @@
-package com.example.businesscalendar.core.presentation.ui.theme
+package com.example.businesscalendar.ui.theme
 
 import android.app.Activity
 import android.os.Build

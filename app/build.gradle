@@ -151,4 +151,8 @@ dependencies {
     //accompanist
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.0")
 
+    // Compose destination
+    implementation 'io.github.raamcosta.compose-destinations:core:1.9.52'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.9.52'
+
 }

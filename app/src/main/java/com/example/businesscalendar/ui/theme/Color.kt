@@ -1,4 +1,4 @@
-package com.example.businesscalendar.core.presentation.ui.theme
+package com.example.businesscalendar.ui.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
