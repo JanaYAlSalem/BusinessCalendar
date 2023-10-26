@@ -3,7 +3,7 @@ package com.example.businesscalendar.data.local.repository
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import kotlinx.coroutines.flow.Flow
 
-interface ReminderRepository {
+interface IReminderRepository {
 
     fun getAllItemsStream(): Flow<List<ReminderItem>>
     fun getItemStream(id: Int): Flow<ReminderItem?>

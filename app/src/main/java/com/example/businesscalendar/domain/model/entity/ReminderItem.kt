@@ -6,15 +6,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "reminder_item")
 data class ReminderItem(
     @PrimaryKey(autoGenerate = true)
-    val id : Int,
-//    val companyItem : CompanyItem,
-    val startDate: String,
-    val expiredDate : String
-)
-
-data class CompanyItem (
-    val id : Int,
-    val name: String,
-    val cost : Int
-
+    val id : Int? = null,
+    val companyName : String,
+    val startDate: String?,
+    val expiredDate : String?,
+    val cost : String?
 )

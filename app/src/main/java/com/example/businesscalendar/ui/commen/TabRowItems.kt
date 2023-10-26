@@ -23,6 +23,7 @@ import com.example.businesscalendar.ui.screens.allReminder.AllReminderScreen
 import com.example.businesscalendar.ui.screens.home.CalendarHomeScreen
 import com.example.businesscalendar.ui.screens.soonReminder.SoonReminderScreen
 import com.example.businesscalendar.ui.theme.Blue30
+import com.example.businesscalendar.ui.theme.PurpleGrey80
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,7 @@ fun TabRowItems(
 
     val list = listOf(
         (TabRowItems(stringResource(id = R.string.home))),
-        (TabRowItems(stringResource(id = R.string.add),)),
+        (TabRowItems(stringResource(id = R.string.soon),)),
     )
 
     TabRow(
@@ -51,7 +52,7 @@ fun TabRowItems(
             TabRowDefaults.Indicator(
                 modifier = Modifier.tabIndicatorOffset(it[tabIndex]),
                 height = 5.dp,
-                color = Blue30
+                color = PurpleGrey80
             )
         }
     ) {
