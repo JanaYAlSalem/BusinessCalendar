@@ -3,6 +3,7 @@ package com.example.businesscalendar.ui.screens.allReminder
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.businesscalendar.data.local.repository.IReminderRepository
+import com.example.businesscalendar.domain.model.entity.ReminderItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +27,10 @@ class AllReminderViewModel @Inject constructor(
         getAllReminder()
     }
 
+
+    fun removeFromFavorite(reminder: ReminderItem) = viewModelScope.launch(Dispatchers.IO) {
+        reminderRepository.deleteReminder(reminder)
+    }
     fun getAllReminder() = reminderRepository.getAllItemsStream()
         .onEach {
             _viewState.emit(AllReminderViewState(it))

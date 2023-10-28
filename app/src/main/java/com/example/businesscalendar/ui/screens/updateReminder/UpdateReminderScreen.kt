@@ -1,45 +1,33 @@
-package com.example.businesscalendar.ui.screens.addScreen
+package com.example.businesscalendar.ui.screens.updateReminder
 
-import android.app.DatePickerDialog
-import android.util.Log
 import android.widget.DatePicker
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Done
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import com.example.businesscalendar.ui.commen.components.CustomTextField
 import com.example.businesscalendar.ui.commen.components.CustomTextFieldI
+import com.example.businesscalendar.ui.screens.addScreen.AddReminderViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.util.Calendar
 import java.util.Date
 
 @Destination
 @Composable
-fun AddReminderScreen(
-    viewModel: AddReminderViewModel = hiltViewModel()
+fun UpdateReminderScreen(
+    viewModel: UpdateReminderViewModel = hiltViewModel(),
 ) {
 
     // Initializing a Calendar
@@ -50,6 +38,7 @@ fun AddReminderScreen(
     val mMonth: Int = mCalendar.get(Calendar.MONTH)
     val mDay: Int = mCalendar.get(Calendar.DAY_OF_MONTH)
     mCalendar.time = Date()
+
 
     var companyName by remember { mutableStateOf("") }
     var startDate by remember { mutableStateOf("") }
@@ -99,7 +88,7 @@ fun AddReminderScreen(
             onValueChange = { cost = it })
 
         Button(onClick = {
-            viewModel.insertReminder(
+            viewModel.updateReminder(
                 ReminderItem(
                     expiredDate = endDate,
                     startDate = startDate,
@@ -108,7 +97,8 @@ fun AddReminderScreen(
                 )
             )
         }) {
-            Text(text = "Add")
+            Text(text = "Update")
         }
     }
+
 }

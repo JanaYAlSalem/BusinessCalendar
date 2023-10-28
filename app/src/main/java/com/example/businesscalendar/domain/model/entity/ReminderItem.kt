@@ -8,7 +8,7 @@ data class ReminderItem(
     @PrimaryKey(autoGenerate = true)
     val id : Int? = null,
     val companyName : String,
-    val startDate: String?,
-    val expiredDate : String?,
-    val cost : String?
+    val startDate: String,
+    val expiredDate : String,
+    val cost : String
 )

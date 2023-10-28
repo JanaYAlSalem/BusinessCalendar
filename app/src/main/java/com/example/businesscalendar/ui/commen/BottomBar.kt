@@ -26,6 +26,8 @@ import com.example.businesscalendar.ui.screens.destinations.Destination
 import com.example.businesscalendar.ui.screens.destinations.DirectionDestination
 import com.example.businesscalendar.ui.screens.home.CalendarHomeScreen
 import com.example.businesscalendar.ui.screens.startAppDestination
+import com.example.businesscalendar.ui.theme.PrimaryColor
+import com.example.businesscalendar.ui.theme.SecondaryColor
 import com.ramcosta.composedestinations.navigation.navigate
 
 
@@ -36,7 +38,8 @@ fun BottomBar(
     val currentDestination: Destination = navController.appCurrentDestinationAsState().value
         ?: NavGraphs.root.startAppDestination
 
-    NavigationBar () {
+    NavigationBar (contentColor = PrimaryColor,
+        containerColor = SecondaryColor) {
         BottomBarDestination.values().forEach { destination ->
             NavigationBarItem(
                 selected = currentDestination == destination.direction,
@@ -44,7 +47,6 @@ fun BottomBar(
                     navController.navigate(destination.direction) {
                         launchSingleTop = true
                         val navigationRoutes = BottomBarDestination.values()
-
                         val firstBottomBarDestination =
                             navController.currentBackStack.value.firstOrNull() { navBackStackEntry ->
                                 checkForDestinations(
@@ -62,8 +64,7 @@ fun BottomBar(
                         restoreState = true
                     }
                 },
-                icon = {
-                    Icon(
+                icon = { Icon(
                         destination.icon,
                         contentDescription = stringResource(destination.label)
                     )

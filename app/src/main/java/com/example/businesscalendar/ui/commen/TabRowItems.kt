@@ -1,5 +1,7 @@
 package com.example.businesscalendar.ui.commen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,15 +20,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.businesscalendar.R
-import com.example.businesscalendar.ui.screens.addScreen.AddReminderScreen
 import com.example.businesscalendar.ui.screens.allReminder.AllReminderScreen
-import com.example.businesscalendar.ui.screens.home.CalendarHomeScreen
 import com.example.businesscalendar.ui.screens.soonReminder.SoonReminderScreen
-import com.example.businesscalendar.ui.theme.Blue30
-import com.example.businesscalendar.ui.theme.PurpleGrey80
+import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TabRowItems(
@@ -37,7 +37,7 @@ fun TabRowItems(
     val coroutineScope = rememberCoroutineScope()
 
     val list = listOf(
-        (TabRowItems(stringResource(id = R.string.home))),
+        (TabRowItems(name = "All Reminder")),
         (TabRowItems(stringResource(id = R.string.soon),)),
     )
 
@@ -46,13 +46,12 @@ fun TabRowItems(
             .height(50.dp)
             .fillMaxWidth(),
         selectedTabIndex = pagerState.currentPage,
-        backgroundColor = Color.Gray,
+        backgroundColor = PrimaryColor,
         contentColor = Color.White,
         indicator = {
             TabRowDefaults.Indicator(
                 modifier = Modifier.tabIndicatorOffset(it[tabIndex]),
                 height = 5.dp,
-                color = PurpleGrey80
             )
         }
     ) {
@@ -78,7 +77,7 @@ fun TabRowItems(
     ) { index ->
         when (index) {
             0 -> {
-                AllReminderScreen()
+                AllReminderScreen(navigator = navigator)
             }
             1 -> {
                 SoonReminderScreen()

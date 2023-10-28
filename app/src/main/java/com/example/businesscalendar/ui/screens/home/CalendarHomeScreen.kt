@@ -37,7 +37,6 @@ fun CalendarHomeScreen (
 
     Column(Modifier.fillMaxSize()) {
         TabRowItems(pagerState = pagerState, navigator = navigator)
-
     }
 
     }
