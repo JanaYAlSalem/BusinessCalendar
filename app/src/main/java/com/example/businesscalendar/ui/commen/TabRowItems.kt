@@ -80,7 +80,7 @@ fun TabRowItems(
                 AllReminderScreen(navigator = navigator)
             }
             1 -> {
-                SoonReminderScreen()
+                SoonReminderScreen(navigator = navigator)
             }
         }
     }

@@ -68,13 +68,6 @@ fun CustomTextFieldI(
     // Fetching the Local Context
     val mContext = LocalContext.current
 
-
-
-    // Declaring a string value to
-    // store date in string format
-
-//    var mDate = remember { mutableStateOf("") }
-
     // Declaring DatePickerDialog and setting
     // initial values as current values (present year, month and day)
     val mDatePickerDialog = android.app.DatePickerDialog(

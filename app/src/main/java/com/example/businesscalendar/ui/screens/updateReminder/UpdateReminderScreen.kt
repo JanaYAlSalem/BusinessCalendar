@@ -18,16 +18,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import com.example.businesscalendar.ui.commen.components.CustomTextField
 import com.example.businesscalendar.ui.commen.components.CustomTextFieldI
-import com.example.businesscalendar.ui.screens.addScreen.AddReminderViewModel
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.util.Calendar
 import java.util.Date
 
 @Destination
 @Composable
 fun UpdateReminderScreen(
-    viewModel: UpdateReminderViewModel = hiltViewModel(),
+    item: ReminderItem,
+    viewModel: UpdateReminderViewModel = hiltViewModel()
 ) {
 
     // Initializing a Calendar
@@ -40,10 +39,10 @@ fun UpdateReminderScreen(
     mCalendar.time = Date()
 
 
-    var companyName by remember { mutableStateOf("") }
-    var startDate by remember { mutableStateOf("") }
-    var endDate by remember { mutableStateOf("") }
-    var cost by remember { mutableStateOf("") }
+    var companyName by remember { mutableStateOf(item.companyName) }
+    var startDate by remember { mutableStateOf(item.startDate) }
+    var endDate by remember { mutableStateOf(item.expiredDate) }
+    var cost by remember { mutableStateOf(item.cost) }
 
 
     Column(modifier = Modifier.fillMaxSize()) {

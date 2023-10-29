@@ -72,7 +72,7 @@ fun AddReminderScreen(
             textValue = startDate,
             onValueChange = { startDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                startDate = "$mDayOfMonth/${mMonth + 1}/$mYear"
+                startDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
             },
             mDay = mDay,
             mMonth = mMonth,
@@ -85,7 +85,7 @@ fun AddReminderScreen(
             textValue = endDate,
             onValueChange = { endDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                endDate = "$mDayOfMonth/${mMonth + 1}/$mYear"
+                endDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
             },
             mDay = mDay,
             mMonth = mMonth,

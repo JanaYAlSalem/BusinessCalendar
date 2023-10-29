@@ -14,9 +14,7 @@ class UpdateReminderViewModel @Inject constructor(
     private val reminderRepository: IReminderRepository,
 ) : ViewModel() {
 
-    fun updateReminder(reminderItem: ReminderItem) {
-        viewModelScope.launch(Dispatchers.IO) {
-            reminderRepository.updateReminder(reminderItem = reminderItem)
-        }
+    fun updateReminder(reminder: ReminderItem) = viewModelScope.launch(Dispatchers.IO) {
+        reminderRepository.updateReminder(reminder)
     }
 }
