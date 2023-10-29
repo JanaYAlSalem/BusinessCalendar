@@ -1,7 +1,5 @@
 package com.example.businesscalendar.ui.commen
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.businesscalendar.R
 import com.example.businesscalendar.ui.screens.allReminder.AllReminderScreen
-import com.example.businesscalendar.ui.screens.soonReminder.SoonReminderScreen
 import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
@@ -79,7 +76,7 @@ fun TabRowItems(
                 AllReminderScreen(navigator = navigator)
             }
             1 -> {
-                SoonReminderScreen(navigator = navigator)
+                AllReminderScreen(navigator= navigator)
             }
         }
     }

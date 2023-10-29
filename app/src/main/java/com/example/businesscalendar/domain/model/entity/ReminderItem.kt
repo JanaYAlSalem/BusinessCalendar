@@ -7,9 +7,9 @@ import java.io.Serializable
 @Entity(tableName = "reminder_item")
 data class ReminderItem(
     @PrimaryKey(autoGenerate = true)
-    val id : Int? = null,
-    val companyName : String,
-    val startDate: String,
-    val expiredDate : String,
-    val cost : String
+    val id: Int? = null,
+    val companyName: String? = null,
+    val startDate: String? = null,
+    val expiredDate: String? = null,
+    val cost: String? = null
 ) : Serializable

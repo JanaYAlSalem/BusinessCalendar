@@ -38,5 +38,4 @@ class AllReminderViewModel @Inject constructor(
         .catch { _viewState.emit(AllReminderViewState(error = true)) }
         .flowOn(Dispatchers.IO)
         .launchIn(viewModelScope)
-
 }

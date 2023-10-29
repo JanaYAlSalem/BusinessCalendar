@@ -63,11 +63,11 @@ fun ReminderCard(
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text(text = item.companyName)
+                item.companyName?.let { Text(text = it) }
                 Row {
-                    Text(text = item.startDate)
+                    item.startDate?.let { Text(text = it) }
                     Text(text = "-")
-                    Text(text = item.expiredDate)
+                    item.expiredDate?.let { Text(text = it) }
                 }
                 Text(text = "${item.cost} SR")
             }

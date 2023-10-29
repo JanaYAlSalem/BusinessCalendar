@@ -19,11 +19,11 @@ import com.example.businesscalendar.ui.screens.appCurrentDestinationAsState
 import com.example.businesscalendar.ui.screens.destinations.AddReminderScreenDestination
 import com.example.businesscalendar.ui.screens.destinations.CalendarHomeScreenDestination
 import com.example.businesscalendar.ui.screens.destinations.Destination
-import com.example.businesscalendar.ui.screens.destinations.DirectionDestination
 import com.example.businesscalendar.ui.screens.startAppDestination
 import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.example.businesscalendar.ui.theme.SecondaryColor
 import com.ramcosta.composedestinations.navigation.navigate
+import com.ramcosta.composedestinations.spec.Direction
 
 
 @Composable
@@ -85,11 +85,11 @@ fun checkForDestinations(
 
 
 enum class BottomBarDestination(
-    val direction: DirectionDestination,
+    val direction: Direction,
     val icon: ImageVector,
     @StringRes val label: Int
 ) {
     HOME(CalendarHomeScreenDestination,Icons.Default.Home,R.string.home),
-    ADD(AddReminderScreenDestination,Icons.Default.Add,R.string.add),
+    ADD(AddReminderScreenDestination(),Icons.Default.Add,R.string.add),
 
 }

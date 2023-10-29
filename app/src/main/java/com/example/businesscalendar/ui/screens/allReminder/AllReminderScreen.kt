@@ -1,7 +1,5 @@
 package com.example.businesscalendar.ui.screens.allReminder
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.businesscalendar.ui.commen.components.ReminderCard
-import com.example.businesscalendar.ui.screens.destinations.UpdateReminderScreenDestination
+import com.example.businesscalendar.ui.screens.destinations.AddReminderScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -32,12 +30,12 @@ fun AllReminderScreen(
         modifier = Modifier.padding(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        LazyColumn(modifier = Modifier.fillMaxSize(), content = {
+        LazyColumn(Modifier.fillMaxSize(), content = {
             items(state?.reminderList ?: emptyList()) { item ->
                 ReminderCard(
                     onClick = {
-                        navigator.navigate(UpdateReminderScreenDestination(item))
-                        },
+                        navigator.navigate(AddReminderScreenDestination(reminderItem = item))
+                    },
                     onLongClick = {
                         viewModel.deleteReminder(item)
                     },

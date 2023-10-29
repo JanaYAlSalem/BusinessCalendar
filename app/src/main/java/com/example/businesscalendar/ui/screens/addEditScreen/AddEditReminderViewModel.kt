@@ -1,4 +1,4 @@
-package com.example.businesscalendar.ui.screens.addScreen
+package com.example.businesscalendar.ui.screens.addEditScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddReminderViewModel @Inject constructor(
+class AddEditReminderViewModel @Inject constructor(
     private val reminderRepository: IReminderRepository,
 ) :ViewModel() {
 
@@ -19,5 +19,4 @@ class AddReminderViewModel @Inject constructor(
             reminderRepository.addReminder(item)
         }
     }
-
 }
