@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.businesscalendar.ui.screens.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScaffold() {
     val navController = rememberNavController()

@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,7 +19,6 @@ import com.example.businesscalendar.ui.screens.destinations.UpdateReminderScreen
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Destination
 @Composable
 fun AllReminderScreen(
@@ -32,7 +32,7 @@ fun AllReminderScreen(
         modifier = Modifier.padding(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        LazyColumn(content = {
+        LazyColumn(modifier = Modifier.fillMaxSize(), content = {
             items(state?.reminderList ?: emptyList()) { item ->
                 ReminderCard(
                     onClick = {

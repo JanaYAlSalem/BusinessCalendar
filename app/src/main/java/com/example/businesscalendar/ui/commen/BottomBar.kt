@@ -3,11 +3,7 @@ package com.example.businesscalendar.ui.commen
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -24,7 +20,6 @@ import com.example.businesscalendar.ui.screens.destinations.AddReminderScreenDes
 import com.example.businesscalendar.ui.screens.destinations.CalendarHomeScreenDestination
 import com.example.businesscalendar.ui.screens.destinations.Destination
 import com.example.businesscalendar.ui.screens.destinations.DirectionDestination
-import com.example.businesscalendar.ui.screens.home.CalendarHomeScreen
 import com.example.businesscalendar.ui.screens.startAppDestination
 import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.example.businesscalendar.ui.theme.SecondaryColor

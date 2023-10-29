@@ -1,11 +1,8 @@
 package com.example.businesscalendar.ui.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun daysLeft (date : String) : Long{
 
     val eDate = date.split("/").reversed().joinToString("-")
@@ -18,7 +15,6 @@ fun daysLeft (date : String) : Long{
     return daysLeft
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun isBefore90DaysLeft (date : String) : Boolean {
     return daysLeft(date) <= 90
 }

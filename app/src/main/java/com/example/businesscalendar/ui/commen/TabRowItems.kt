@@ -26,7 +26,6 @@ import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TabRowItems(
