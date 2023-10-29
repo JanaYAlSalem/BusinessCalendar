@@ -26,7 +26,7 @@ fun AllReminderScreen(
     navigator: DestinationsNavigator
 ) {
 
-    val state by viewModel.viewState.collectAsStateWithLifecycle()
+    val state by viewModel.allReminderViewState.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.padding(),

@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -26,12 +25,15 @@ class AllReminderViewModel @Inject constructor(
     private val reminderRepository: IReminderRepository,
 ) : ViewModel() {
 
-    private val _viewState = MutableStateFlow<AllReminderViewState?>(null)
-    val viewState = _viewState.asStateFlow()
+    private val _allReminderViewState = MutableStateFlow<AllReminderViewState?>(null)
+    val allReminderViewState = _allReminderViewState.asStateFlow()
+
+    private val _soonReminderViewState = MutableStateFlow<SoonRemindeViewState?>(null)
+    val soonReminderViewState = _soonReminderViewState.asStateFlow()
 
     init {
         getAllReminder()
-//        getRemindersBefore90DaysLeft()
+        getRemindersBefore90DaysLeft()
     }
 
 
@@ -41,9 +43,9 @@ class AllReminderViewModel @Inject constructor(
 
     fun getAllReminder() = reminderRepository.getAllItemsStream()
         .onEach {
-            _viewState.emit(AllReminderViewState(reminderList = it))
+            _allReminderViewState.emit(AllReminderViewState(reminderList = it))
         }
-        .catch { _viewState.emit(AllReminderViewState(error = true)) }
+        .catch { _allReminderViewState.emit(AllReminderViewState(error = true)) }
         .flowOn(Dispatchers.IO)
         .launchIn(viewModelScope)
 
@@ -55,9 +57,9 @@ class AllReminderViewModel @Inject constructor(
             }
         }
         .onEach {
-            _viewState.emit(AllReminderViewState(soonList = it))
+            _soonReminderViewState.emit(SoonRemindeViewState(soonList = it))
         }
-        .catch { _viewState.emit(AllReminderViewState(error = true)) }
+        .catch { _allReminderViewState.emit(AllReminderViewState(error = true)) }
         .flowOn(Dispatchers.IO)
         .launchIn(viewModelScope)
 
