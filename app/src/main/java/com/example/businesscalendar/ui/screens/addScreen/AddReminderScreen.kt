@@ -67,62 +67,6 @@ fun AddReminderScreen(
     var endDate by remember { mutableStateOf("") }
     var cost by remember { mutableStateOf("") }
 
-
-//    Column(modifier = Modifier.fillMaxSize()) {
-//
-//        CustomTextField(
-//            label = "Company Name",
-//            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
-//            textValue = companyName,
-//            onValueChange = { companyName = it })
-//
-//
-//        CustomTextFieldI(
-//            label = "Start Date",
-//            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
-//            textValue = startDate,
-//            onValueChange = { startDate = it },
-//            listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-//                startDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
-//            },
-//            mDay = mDay,
-//            mMonth = mMonth,
-//            mYear = mYear
-//        )
-//
-//        CustomTextFieldI(
-//            label = "End Date",
-//            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
-//            textValue = endDate,
-//            onValueChange = { endDate = it },
-//            listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-//                endDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
-//            },
-//            mDay = mDay,
-//            mMonth = mMonth,
-//            mYear = mYear
-//        )
-//
-//        CustomTextField(
-//            label = "Cost",
-//            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
-//            textValue = cost,
-//            onValueChange = { cost = it })
-//
-//        Button(onClick = {
-//            viewModel.insertReminder(
-//                ReminderItem(
-//                    expiredDate = endDate,
-//                    startDate = startDate,
-//                    companyName = companyName,
-//                    cost = cost
-//                )
-//            )
-//        }) {
-//            Text(text = "Add")
-//        }
-//    }
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -143,7 +87,7 @@ fun AddReminderScreen(
             textValue = startDate,
             onValueChange = { startDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                startDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
+                startDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth + 1, mYear)
             },
             mDay = mDay,
             mMonth = mMonth,
@@ -155,8 +99,8 @@ fun AddReminderScreen(
             textValue = endDate,
             onValueChange = { endDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                endDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth, mYear)
-            },
+                endDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth + 1, mYear)
+                       },
             mDay = mDay,
             mMonth = mMonth,
             mYear = mYear
@@ -165,7 +109,7 @@ fun AddReminderScreen(
         CustomTextField(
             label = "Cost",
             endIcon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
-            textValue = cost ?: "",
+            textValue = cost,
             onValueChange = { cost = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
@@ -174,6 +118,7 @@ fun AddReminderScreen(
             modifier = Modifier.padding(24.dp).fillMaxWidth(),
             colors = androidx.compose.material.ButtonDefaults.buttonColors(backgroundColor = PrimaryColor, contentColor = White),
         onClick = {
+            println("##${companyName}}} ${startDate} }} ${endDate} }} ${cost}")
             viewModel.insertReminder(
                 ReminderItem(
                     expiredDate = endDate,
@@ -182,6 +127,7 @@ fun AddReminderScreen(
                     cost = cost
                 )
             )
+            navigator.navigateUp()
         }) {
             Text(text = "Add")
         }

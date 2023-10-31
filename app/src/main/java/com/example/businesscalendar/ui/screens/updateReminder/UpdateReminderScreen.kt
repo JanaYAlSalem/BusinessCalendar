@@ -1,13 +1,17 @@
 package com.example.businesscalendar.ui.screens.updateReminder
 
 import android.widget.DatePicker
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountBox
 import androidx.compose.material.icons.outlined.Done
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
@@ -15,13 +19,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import com.example.businesscalendar.ui.commen.components.CustomTextField
 import com.example.businesscalendar.ui.commen.components.CustomTextFieldI
+import com.example.businesscalendar.ui.theme.PrimaryColor
+import com.example.businesscalendar.ui.theme.White
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.util.Calendar
 import java.util.Date
 
@@ -29,8 +38,9 @@ import java.util.Date
 @Composable
 fun UpdateReminderScreen(
     item: ReminderItem,
-    viewModel: UpdateReminderViewModel = hiltViewModel()
-) {
+    viewModel: UpdateReminderViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator,
+    ) {
 
     // Initializing a Calendar
     val mCalendar = Calendar.getInstance()
@@ -48,11 +58,15 @@ fun UpdateReminderScreen(
     var cost by remember { mutableStateOf(item.cost) }
 
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         CustomTextField(
             label = "Company Name",
-            endIcon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
+            endIcon = { Icon(imageVector = Icons.Outlined.AccountBox, contentDescription = null) },
             textValue = companyName,
             onValueChange = { companyName = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
@@ -64,7 +78,7 @@ fun UpdateReminderScreen(
             textValue = startDate,
             onValueChange = { startDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                startDate = "$mDayOfMonth/${mMonth + 1}/$mYear"
+                startDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth + 1, mYear)
             },
             mDay = mDay,
             mMonth = mMonth,
@@ -76,7 +90,7 @@ fun UpdateReminderScreen(
             textValue = endDate,
             onValueChange = { endDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-                endDate = "$mDayOfMonth/${mMonth + 1}/$mYear"
+                endDate = String.format("%02d/%02d/%d", mDayOfMonth, mMonth + 1, mYear)
             },
             mDay = mDay,
             mMonth = mMonth,
@@ -85,24 +99,28 @@ fun UpdateReminderScreen(
 
         CustomTextField(
             label = "Cost",
-            endIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = null) },
+            endIcon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
             textValue = cost,
             onValueChange = { cost = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
-        Button(onClick = {
-            viewModel.updateReminder(
-                ReminderItem(
-                    expiredDate = endDate,
-                    startDate = startDate,
-                    companyName = companyName,
-                    cost = cost
+        Button(
+            modifier = Modifier.padding(24.dp).fillMaxWidth(),
+            colors = androidx.compose.material.ButtonDefaults.buttonColors(backgroundColor = PrimaryColor, contentColor = White),
+            onClick = {
+                println("##${companyName}}} ${startDate} }} ${endDate} }} ${cost}")
+                viewModel.updateReminder(
+                    ReminderItem(
+                        expiredDate = endDate,
+                        startDate = startDate,
+                        companyName = companyName,
+                        cost = cost
+                    )
                 )
-            )
-        }) {
+                navigator.navigateUp()
+            }) {
             Text(text = "Update")
         }
     }
-
 }
