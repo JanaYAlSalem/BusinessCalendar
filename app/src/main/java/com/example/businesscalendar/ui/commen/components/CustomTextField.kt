@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +36,10 @@ fun CustomTextField(
     textValue: String,
     onValueChange: (String) -> Unit,
     label: String,
-    Icon: @Composable (() -> Unit)? = null,
+    enabled: Boolean = true,
+    endIcon: @Composable (() -> Unit)? = null,
+    keyboardOptions: KeyboardOptions
+
 ) {
 
     OutlinedTextField(
@@ -44,10 +49,12 @@ fun CustomTextField(
             focusedBorderColor = PrimaryColor,
             leadingIconColor = Gray10,
         ),
-        leadingIcon = Icon,
+        enabled = enabled,
+        leadingIcon = endIcon,
         value = textValue,
         onValueChange = onValueChange,
-        label = { Text(text = label) },
+        keyboardOptions = keyboardOptions,
+                label = { Text(text = label) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
@@ -63,7 +70,6 @@ fun CustomTextFieldI(
     mYear : Int,
     mMonth:Int,
     mDay : Int,
-    Icon: @Composable (() -> Unit)? = null,
 ) {
     // Fetching the Local Context
     val mContext = LocalContext.current
@@ -78,22 +84,20 @@ fun CustomTextFieldI(
         , mDay
     )
 
-    Icon(imageVector = Icons.Outlined.DateRange, contentDescription = null, modifier = Modifier.clickable {mDatePickerDialog.show()})
-
     OutlinedTextField(
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = Gray10,
-                focusedLabelColor = PrimaryColor,
-                focusedBorderColor = PrimaryColor,
-                leadingIconColor = Gray10,
-            ),
-            enabled = false,
-            leadingIcon = Icon,
-            value = textValue,
-            onValueChange = { onValueChange },
-            label = { Text(text = label) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        )
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            unfocusedBorderColor = Gray10,
+            focusedLabelColor = PrimaryColor,
+            focusedBorderColor = PrimaryColor,
+            leadingIconColor = Gray10,
+        ),
+        enabled = false,
+        leadingIcon = { Icon(imageVector = Icons.Outlined.DateRange, contentDescription = null, modifier = Modifier.clickable {mDatePickerDialog.show()}) },
+        value = textValue,
+        onValueChange = onValueChange,
+        label = { Text(text = label) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+    )
 }

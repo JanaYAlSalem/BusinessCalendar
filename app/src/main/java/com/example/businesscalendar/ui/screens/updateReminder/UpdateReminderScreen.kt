@@ -3,17 +3,20 @@ package com.example.businesscalendar.ui.screens.updateReminder
 import android.widget.DatePicker
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Done
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import com.example.businesscalendar.ui.commen.components.CustomTextField
@@ -49,14 +52,15 @@ fun UpdateReminderScreen(
 
         CustomTextField(
             label = "Company Name",
-            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
+            endIcon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
             textValue = companyName,
-            onValueChange = { companyName = it })
+            onValueChange = { companyName = it },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+        )
 
 
         CustomTextFieldI(
             label = "Start Date",
-            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
             textValue = startDate,
             onValueChange = { startDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
@@ -69,7 +73,6 @@ fun UpdateReminderScreen(
 
         CustomTextFieldI(
             label = "End Date",
-            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
             textValue = endDate,
             onValueChange = { endDate = it },
             listener = { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
@@ -82,9 +85,11 @@ fun UpdateReminderScreen(
 
         CustomTextField(
             label = "Cost",
-            Icon = { Icon(imageVector = Icons.Outlined.Done, contentDescription = null) },
+            endIcon = { Icon(imageVector = Icons.Outlined.Info, contentDescription = null) },
             textValue = cost,
-            onValueChange = { cost = it })
+            onValueChange = { cost = it },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
 
         Button(onClick = {
             viewModel.updateReminder(

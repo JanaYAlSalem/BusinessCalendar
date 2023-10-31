@@ -42,6 +42,7 @@ fun BottomBar(
         containerColor = SecondaryColor) {
         BottomBarDestination.values().forEach { destination ->
             NavigationBarItem(
+
                 selected = currentDestination == destination.direction,
                 onClick = {
                     navController.navigate(destination.direction) {
