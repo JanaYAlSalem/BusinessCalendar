@@ -10,12 +10,16 @@ fun daysLeft (date : String) : Int{
     println("@@@@@@@@@@@@@ ${date}")
     val eDate = date.split("/").reversed().joinToString("-")
     println("@@@@@@@@@@@@@ ${eDate}")
-//    val futureDate = LocalDate.parse(eDate)
-//    // get the difference in full days
-//    val daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), futureDate)
-//    // print the result
-//    println("@@@@@@@@@@@@@ $daysLeft days left")
-    return 0
+
+    val futureDate = LocalDate.parse(eDate)
+    // get the difference in full days
+    val daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), futureDate)
+    // print the result
+    println("@@@@@@@@@@@@@ ${daysLeft.toInt()} days left")
+
+
+    return daysLeft.toInt()
+//    return 0
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
