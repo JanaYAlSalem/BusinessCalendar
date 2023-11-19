@@ -38,6 +38,7 @@ import androidx.navigation.NavController
 import com.example.businesscalendar.domain.model.entity.ReminderItem
 import com.example.businesscalendar.ui.commen.components.CustomTextField
 import com.example.businesscalendar.ui.commen.components.CustomTextFieldI
+import com.example.businesscalendar.ui.screens.destinations.AllReminderScreenDestination
 import com.example.businesscalendar.ui.theme.AccentColor
 import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.example.businesscalendar.ui.theme.White
@@ -128,6 +129,8 @@ fun AddReminderScreen(
                 )
             )
             navigator.navigateUp()
+//            navigator.navigate(AllReminderScreenDestination() )
+
         }) {
             Text(text = "Add")
         }

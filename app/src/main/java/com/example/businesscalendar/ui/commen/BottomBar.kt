@@ -26,6 +26,7 @@ import com.example.businesscalendar.ui.screens.destinations.Destination
 import com.example.businesscalendar.ui.screens.destinations.DirectionDestination
 import com.example.businesscalendar.ui.screens.home.CalendarHomeScreen
 import com.example.businesscalendar.ui.screens.startAppDestination
+import com.example.businesscalendar.ui.theme.Gray10
 import com.example.businesscalendar.ui.theme.PrimaryColor
 import com.example.businesscalendar.ui.theme.SecondaryColor
 import com.ramcosta.composedestinations.navigation.navigate
@@ -42,8 +43,11 @@ fun BottomBar(
         containerColor = SecondaryColor) {
         BottomBarDestination.values().forEach { destination ->
             NavigationBarItem(
-
-                selected = currentDestination == destination.direction,
+                colors = androidx.compose.material3.NavigationBarItemDefaults
+                    .colors(
+                        indicatorColor = Gray10
+                    ),
+                        selected = currentDestination == destination.direction,
                 onClick = {
                     navController.navigate(destination.direction) {
                         launchSingleTop = true

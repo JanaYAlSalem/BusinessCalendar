@@ -7,19 +7,24 @@ import java.time.temporal.ChronoUnit
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun daysLeft (date : String) : Int{
-    println("@@@@@@@@@@@@@ ${date}")
-    val eDate = date.split("/").reversed().joinToString("-")
-    println("@@@@@@@@@@@@@ ${eDate}")
+    if (date == "") {
+        return 0
+    } else {
+        try {
+            val eDate = date.split("/").reversed().joinToString("-")
+            val futureDate = LocalDate.parse(eDate)
+            // get the difference in full days
+            val daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), futureDate)
+            // print the result
+            println("@@@@@@@@@@@@@ ${daysLeft.toInt()} days left")
 
-    val futureDate = LocalDate.parse(eDate)
-    // get the difference in full days
-    val daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), futureDate)
-    // print the result
-    println("@@@@@@@@@@@@@ ${daysLeft.toInt()} days left")
 
+            return daysLeft.toInt()
+        } catch (e: Exception) {
+            return 0
+        }
 
-    return daysLeft.toInt()
-//    return 0
+    }
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
